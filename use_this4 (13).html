@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Croton-Harmon Stadium Seat Fundraiser</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #E85C0D;
+    --orange-light: #FF7A2E;
+    --orange-dark: #B84500;
+    --black: #111111;
+    --charcoal: #1E1E1E;
+    --white: #FFFFFF;
+    --off-white: #F7F5F0;
+    --gray: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,92,13,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: var(--orange);
+  }
+
+  .school-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 span {
+    color: var(--orange);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 44px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cta-btn:hover {
+    background: var(--orange-light);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.3);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--off-white);
+    color: var(--black);
+    padding: 5rem 2rem;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+  }
+
+  .about h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 0.95;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+
+  .about p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #333;
+    max-width: 700px;
+  }
+
+  .about p + p { margin-top: 1rem; }
+
+  .org-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 2rem;
+  }
+
+  .org-pill {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  a.org-pill:hover {
+    background: var(--orange);
+  }
+
+  /* ── PHOTOS ── */
+  .photos {
+    background: var(--charcoal);
+    padding: 5rem 2rem;
+  }
+
+  .photos .section-label { color: var(--orange); }
+
+  .photos h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--white);
+    margin-bottom: 2.5rem;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .photo-card {
+    background: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(232,92,13,0.25);
+    position: relative;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .photo-placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.4;
+  }
+
+  .photo-placeholder p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .photo-caption {
+    padding: 12px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  /* ── ORDER FORM ── */
+  .order {
+    background: var(--black);
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .order::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--orange);
+  }
+
+  .order .section-label { color: var(--orange-light); }
+
+  .order h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .order .lead {
+    color: rgba(255,255,255,0.55);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+  }
+
+  .form-card {
+    background: #181818;
+    border: 1px solid rgba(232,92,13,0.3);
+    border-radius: 6px;
+    padding: 2.5rem;
+    max-width: 620px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .form-group input,
+  .form-group select {
+    background: #222;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--orange);
+  }
+
+  .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+
+  .form-group select option { background: #222; }
+
+  .submit-btn {
+    margin-top: 2rem;
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 16px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .submit-btn:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  .form-note {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.5;
+  }
+
+  .google-form-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--orange);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    border-bottom: 1px solid rgba(232,92,13,0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .google-form-link:hover { color: var(--orange-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0a0a;
+    border-top: 3px solid var(--orange);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  footer strong { color: var(--orange); font-weight: 600; }
+
+  @media (max-width: 560px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-card { padding: 1.5rem; }
+
+    /* Hero tiger logo — shrink on small phones */
+    .hero img {
+      width: 220px !important;
+      height: 220px !important;
+    }
+
+    /* About section — stack logos above text on mobile */
+    .about .container > div {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    .about .container > div > div:first-child {
+      flex-direction: row !important;
+      justify-content: center !important;
+      width: 100% !important;
+      gap: 1.5rem !important;
+    }
+
+    .about .container > div > div:first-child img {
+      width: 120px !important;
+      height: 120px !important;
+      flex: none !important;
+    }
+
+    /* Photo grid — single column on very small screens */
+    .photo-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* Org pills — wrap nicely */
+    .org-pills {
+      justify-content: center;
+    }
+
+    /* Footer email link — wrap on small screens */
+    footer a {
+      word-break: break-all;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Tablet — two column photo grid is fine, but about logos shrink a bit */
+    .about .container > div > div:first-child img {
+      width: 160px !important;
+      height: 160px !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stripe"></div>
+  <img src="https://i.ibb.co/tT5k4LVX/tiger-logo-final-1.png" alt="Croton-Harmon Tiger Logo" style="width:360px; height:360px; object-fit:contain; margin-bottom:1.5rem;">
+  <div class="school-badge">&#9670; Croton-Harmon High School &#9670;</div>
+  <h1>Stadium <span>Seat</span></h1>
+  <a href="#order" class="cta-btn">Order Your Seat</a>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ORDER FORM -->
+<section class="order" id="order">
+  <div class="container">
+    <p class="section-label">&#9670; Place Your Order</p>
+    <h2>ORDER YOUR SEAT</h2>
+    <p class="lead">Fill out the form below and we'll be in touch to confirm your order and we will contact you to arrange payment. Each seat is priced at $49.95.</p>
+
+    <div class="form-card">
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" placeholder="Jane" />
+        </div>
+
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" placeholder="Smith" />
+        </div>
+
+        <div class="form-group full">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" />
+        </div>
+
+        <div class="form-group full">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="(914) 555-0100" />
+        </div>
+
+        <div class="form-group full">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="123 Main St, Croton-on-Hudson, NY 10520" />
+        </div>
+
+        <div class="form-group full">
+          <label for="quantity">Quantity</label>
+          <select id="quantity">
+            <option value="">Select quantity...</option>
+            <option value="1">1 seat</option>
+            <option value="2">2 seats</option>
+            <option value="3">3 seats</option>
+            <option value="4">4 seats</option>
+            <option value="5">5 seats</option>
+            <option value="6+">6 or more (we'll contact you)</option>
+          </select>
+        </div>
+
+      </div>
+
+      <button class="submit-btn" onclick="handleSubmit()">&#9670; Submit Order</button>
+
+      <p class="form-note">
+        By submitting this form you agree to be contacted by us in order to finalize your order and arrange payment. All proceeds benefit the Croton-Harmon Booster Club and the Hudson River Foundation.
+      </p>
+
+
+    </div>
+
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos" id="gallery">
+  <div class="container">
+    <p class="section-label">&#9670; Product Gallery</p>
+    <h2>The Seat</h2>
+    <div class="photo-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/qKXX2zH/IMG-1054.jpg" alt="Stadium Seat Back View" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">Back View</div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/k29VkJ2f/IMG-1051.jpg" alt="Stadium Seat Front View" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">Front View</div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/NnTNzB1q/IMG-1058.jpg" alt="Stadium Seat Side View" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">Side View</div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/ZzT5wsJz/IMG-1057.jpg" alt="Stadium Seat In the Stands" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">In the Stands</div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/wZz2qwdT/IMG-9680.jpg" alt="Compact Design" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">Compact Design</div>
+      </div>
+      <div class="photo-card">
+        <div class="photo-placeholder" style="background:#111; display:flex; align-items:center; justify-content:center; height:250px;">
+          <img src="https://i.ibb.co/gM830C8r/IMG-9682.jpg" alt="Folds Up for Easy Portability" style="max-width:100%; max-height:100%; object-fit:contain;">
+        </div>
+        <div class="photo-caption">Folds Up for Easy Portability</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div style="display:flex; align-items:stretch; gap:2.5rem; flex-wrap:wrap;">
+      <div style="display:flex; flex-direction:column; justify-content:space-between; gap:1rem; flex-shrink:0; width:220px;">
+        <img src="https://i.ibb.co/tT5k4LVX/tiger-logo-final-1.png" alt="Tiger Logo"
+             style="flex:1; width:100%; object-fit:contain; min-height:0;" />
+        <img src="https://i.ibb.co/Sw46GgjG/riverkeeper-logo.png" alt="Riverkeeper Logo"
+             style="flex:1; width:100%; object-fit:contain; min-height:0;" />
+      </div>
+      <div style="flex:1; min-width:240px;">
+        <p class="section-label">&#9670; About This Fundraiser</p>
+        <br>
+        <br>
+        <p>
+          This fundraiser was conceived by Eliza Becker, a Sophomore at Croton-Harmon High School and member of the Varsity Soccer, Ski, and Lacrosse teams. In addition to generating Tiger spirit in the stands, this project seeks to raise funds for two causes she is passionate about: Croton-Harmon Athletics and the health of the Hudson River. By sourcing the stadium seats and handling all customization through her own labor, these high-quality seats are offered at a competitive price while generating proceeds for the CHHS Booster Club and Riverkeeper.
+        </p>
+        <br>
+        <br>
+        <p>
+          All proceeds from the sale of stadium seats goes toward supporting the following two not for profit organizations: the <strong>Croton-Harmon Booster Club</strong>, which helps support the athletic programs and extracurricular activities at Croton-Harmon High School, and the <strong>Riverkeeper</strong>, which brings together science, law, and advocacy to heal the Hudson River and safeguard our drinking water.
+        </p>
+        <div class="org-pills">
+          <a href="https://www.crotontigers.org/" target="_blank" class="org-pill">&#9670; Croton-Harmon Booster Club</a>
+          <a href="https://www.riverkeeper.org/" target="_blank" class="org-pill">&#9670; Riverkeeper</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Croton-Harmon High School</strong> &mdash; Stadium Seat Fundraiser</p>
+  <p>Proceeds benefit the <strong>Croton-Harmon Booster Club</strong> &amp; <strong>Riverkeeper</strong></p>
+<p style="margin-top:10px;">
+    Questions: <a href="mailto:elizakatebecker@gmail.com" style="color:#E85C0D; text-decoration:none;">
+      Eliza Becker (elizakatebecker@gmail.com)
+    </a>
+  </p>
+</footer>
+
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfZ4bJk4hw-UHl5CJA-p8bHUz4OleU0meUJn13nyGUhAooP_sWg08O8v1c2pdan1TF/exec';
+
+  async function handleSubmit() {
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const quantity = document.getElementById('quantity').value;
+
+    if (!firstName || !lastName || !email || !phone || !address || !quantity) {
+      alert('Please fill out all fields before submitting.');
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, phone, address, quantity })
+      });
+
+      btn.textContent = '✔ Order Received!';
+      btn.style.background = '#2a9d5c';
+      document.getElementById('first-name').value = '';
+      document.getElementById('last-name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('address').value = '';
+      document.getElementById('quantity').value = '';
+
+    } catch (err) {
+      alert('Something went wrong. Please try again or email elizakatebecker@gmail.com directly.');
+      btn.textContent = '◆ Submit Order';
+      btn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
